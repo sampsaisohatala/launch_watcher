@@ -1,24 +1,28 @@
 import React from 'react';
 import './App.css';
 import { useEffect, useState } from 'react';
+import NextLaunchTimer from './components/NextLaunchTimer'
 
 function App() {
-  const nextLaunchUrl = "https://api.spacexdata.com/v3/launches";
+
+  const nextLaunchUrl = "https://api.spacexdata.com/v3/launches/next";
   const [nextLaunch, setNextLaunch] = useState(null);
 
+  // fetch next available launch
   useEffect(() => {
     fetch(nextLaunchUrl)
       .then(res => res.json())
       .then(json => {
         setNextLaunch(json)
-        console.log(json)
       })
   }, []);
+
+  
     
   // return loading screen
   if(nextLaunch == null){
     return(
-      <div>
+      <div className="App">
         <h1> Loading... </h1>
       </div>
     )
@@ -27,8 +31,9 @@ function App() {
   // return main page 
   else{
     return (   
-      <div>
-        <h1> API calls with React Hooks </h1>
+      <div className="App">
+        <h1> Space launch watcher </h1>
+        <NextLaunchTimer nextLaunch={nextLaunch}/>
       </div>
     );
   } 
