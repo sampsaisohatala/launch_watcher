@@ -1,42 +1,36 @@
 import React from 'react';
 import './App.css';
-import { useEffect, useState } from 'react';
-import NextLaunchTimer from './components/NextLaunchTimer'
+import {  Route, Switch } from "react-router";
+import { Link, BrowserRouter } from 'react-router-dom'
+
+import Home from './views/Home'
+import AllLaunches from './views/AllLaunches'
 
 function App() {
+  return(
+    <BrowserRouter>
+      <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/all">All</Link>
+            </li>
+          </ul>
 
-  const nextLaunchUrl = "https://api.spacexdata.com/v3/launches/next";
-  const [nextLaunch, setNextLaunch] = useState(null);
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/all">
+          <AllLaunches />
+        </Route>
+      </Switch>
+      
+    </BrowserRouter>
+             
 
-  // fetch next available launch
-  useEffect(() => {
-    fetch(nextLaunchUrl)
-      .then(res => res.json())
-      .then(json => {
-        setNextLaunch(json)
-      })
-  }, []);
-
-  
-    
-  // return loading screen
-  if(nextLaunch == null){
-    return(
-      <div className="App">
-        <h1> Loading... </h1>
-      </div>
-    )
-  }
-
-  // return main page 
-  else{
-    return (   
-      <div className="App">
-        <h1> Space launch watcher </h1>
-        <NextLaunchTimer nextLaunch={nextLaunch}/>
-      </div>
-    );
-  } 
+  )
 }
 
 export default App;
