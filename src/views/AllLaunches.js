@@ -20,7 +20,9 @@ const useStyles = makeStyles({
 
 function AllLaunches() {
    const allLaunchUrl = 'https://api.spacexdata.com/v3/launches';
+   const allPadsUrl = 'https://api.spacexdata.com/v3/launchpads';
    const [allLaunches, setAllLaunches] = useState(null);
+   const [allPads, setAllPads] = useState([]);
    const [filter, setFilter] = useState('all');
    const [filteredLaunches, setFilteredLaunches] = useState([]);
    const style = useStyles();
@@ -32,25 +34,37 @@ function AllLaunches() {
          .then((json) => {
             setAllLaunches(json);
          });
+      fetch(allPadsUrl)
+         .then((res) => res.json())
+         .then((json) => {
+            setAllPads(json);
+         });
    }, []);
 
    useEffect(() => {
-      filteredLaunchHandler();
+      if (allLaunches) filteredLaunchHandler();
    }, [allLaunches, filter]);
 
    const filteredLaunchHandler = () => {
-      console.log(filter);
+      let launches;
+      let sortedLaunches;
+
       switch (filter) {
          case 'future':
-            setFilteredLaunches(allLaunches.filter((launch) => new Date() < new Date(launch.launch_date_utc)));
+            launches = allLaunches.filter((launch) => new Date() < new Date(launch.launch_date_utc));
+            sortedLaunches = launches.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
+            setFilteredLaunches(sortedLaunches);
             break;
 
          case 'past':
-            setFilteredLaunches(allLaunches.filter((launch) => new Date() > new Date(launch.launch_date_utc)));
+            launches = allLaunches.filter((launch) => new Date() > new Date(launch.launch_date_utc));
+            sortedLaunches = launches.sort((a, b) => b.launch_date_unix - a.launch_date_unix);
+            setFilteredLaunches(sortedLaunches);
             break;
 
          default:
-            setFilteredLaunches(allLaunches);
+            sortedLaunches = allLaunches.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
+            setFilteredLaunches(sortedLaunches);
             break;
       }
    };
@@ -64,7 +78,7 @@ function AllLaunches() {
    else {
       return (
          <div className="App">
-            <h1> All launches </h1>
+            <h1>{`${filter} launches`}</h1>
             <Filter setFilter={setFilter} />
             <TableContainer component={Paper}>
                <Table className={style.table} aria-label="simple table">
@@ -72,7 +86,7 @@ function AllLaunches() {
                      <TableRow>
                         <TableCell>Mission name</TableCell>
                         <TableCell align="left">Launch date</TableCell>
-                        <TableCell align="left">Rocket used</TableCell>
+                        <TableCell align="left">Rocket</TableCell>
                         <TableCell align="left">Launch site</TableCell>
                      </TableRow>
                   </TableHead>
@@ -83,8 +97,10 @@ function AllLaunches() {
                               {launch.mission_name}
                            </TableCell>
                            <TableCell align="left">{launch.launch_date_utc.slice(0, -1).split('T')[0]}</TableCell>
-                           <TableCell align="left">{launch.rocket.rocket_name}</TableCell>
-                           <TableCell align="left">{launch.launch_site.site_name}</TableCell>
+                           <TableCell align="left">
+                              {launch.rocket.second_stage.block ? `${launch.rocket.rocket_name} Block ${launch.rocket.second_stage.block}` : `${launch.rocket.rocket_name}`}
+                           </TableCell>
+                           <TableCell align="left">{allPads.map((pad) => (pad.site_id === launch.launch_site.site_id ? pad.location.name : ''))}</TableCell>
                         </TableRow>
                      ))}
                   </TableBody>
@@ -94,5 +110,5 @@ function AllLaunches() {
       );
    }
 }
-
+//allPads.filter((pad) => pad.site_id === launch.launch_site.site_id)
 export default AllLaunches;

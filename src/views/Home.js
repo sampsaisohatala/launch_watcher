@@ -30,8 +30,7 @@ function Home() {
    else {
       return (
          <div className="App">
-            <h1> Space launch watcher </h1>
-
+            <h3>{`${nextLaunch.rocket.rocket_name} Block ${nextLaunch.rocket.second_stage.block} | ${nextLaunch.mission_name}`}</h3>
             <NextLaunchTimer nextLaunch={nextLaunch} />
          </div>
       );
