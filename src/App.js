@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // componenets
-import Home from './views/Home';
-import AllLaunches from './views/AllLaunches';
-import Header from './components/Header';
+import Home from './views/home/Home';
+import AllLaunches from './views/launches/Launches';
+import Navigation from './components/navigation/Navigation';
 
 function App() {
+   const [delay, setDelay] = useState(false);
+
    return (
       <BrowserRouter>
-         <Header />
+         <Navigation setDelay={setDelay} />
          <Switch>
             <Route exact path="/">
-               <Home />
+               <Home delay={delay} />
             </Route>
-            <Route path="/all">
-               <AllLaunches />
+            <Route path="/launches">
+               <AllLaunches delay={delay} />
             </Route>
          </Switch>
       </BrowserRouter>
