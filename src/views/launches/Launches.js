@@ -2,7 +2,10 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Loadingscreen from '../../components/loadingScreen/Loadingscreen';
 import Filter from '../../components/filter/Filter';
+import { Table } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Launches.css';
+import background from '../../spacex.jpg';
 
 function Launches(props) {
    const allLaunchUrl = 'https://api.spacexdata.com/v3/launches';
@@ -63,10 +66,11 @@ function Launches(props) {
    else {
       return (
          <div className="launches">
-            <h1>{`${filter} launches`}</h1>
+            <img src={background} alt=""></img>
+            <h1 className="text-center">{`${filter} launches`.toUpperCase()}</h1>
             <Filter setFilter={setFilter} />
-            <div className="tablecontainer">
-               <table>
+            <div className="m-5">
+               <Table striped bordered hover variant="dark">
                   <thead>
                      <tr>
                         <th>Mission Name</th>
@@ -85,7 +89,7 @@ function Launches(props) {
                         </tr>
                      ))}
                   </tbody>
-               </table>
+               </Table>
             </div>
             <div className={allLaunches && !props.delay ? 'loading-mask left fade' : 'loading-mask left'} />
             <div className={allLaunches && !props.delay ? 'loading-mask right fade' : 'loading-mask right'} />
