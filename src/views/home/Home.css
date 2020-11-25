@@ -8,11 +8,71 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   overflow: hidden;
+   background: black;
 }
-.hero h1 {
+.top-background {
+   position: absolute;
+   height: 100vh;
+   width: 100vw;
+   left: 0px;
+   top: 0;
+   object-fit: cover;
    pointer-events: none;
-   font-size: 2.5rem;
+   z-index: -1;
 }
+.cover-background {
+   position: absolute;
+   left: 0;
+   bottom: 20vh;
+   width: 100vw;
+   height: auto;
+   z-index: 2;
+   pointer-events: none;
+}
+.bottom-background {
+   position: absolute;
+   width: 100vw;
+   height: calc(20vh + 1px); /* to fix on pixel line between bottom and cover bgs */
+   left: 0px;
+   bottom: 0;
+   pointer-events: none;
+   background: linear-gradient(to right, rgb(10, 10, 10), rgb(0, 0, 0)); /* make sure that color values are same here and in the svg */
+}
+.next-launch-information {
+   position: absolute;
+   width: 100vw;
+   height: 150px;
+   left: 0px;
+   top: 150px;
+   font-family: 'Noto Sans', sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 50px;
+   line-height: 62px;
+   text-align: center;
+   color: #ffffff;
+   text-shadow: 2px 2px black;
+}
+.next-launch-heading {
+   position: absolute;
+   width: 100vw;
+   height: 150px;
+   left: 0px;
+   top: 263px;
+   font-family: 'Noto Sans', sans-serif;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 70px;
+   line-height: 87px;
+   text-align: center;
+   color: #ffffff;
+   text-shadow: 2px 2px black;
+}
+.bold {
+   font-weight: bold;
+}
+/*
 .hero img {
    position: fixed;
    z-index: -1;
@@ -21,24 +81,4 @@
    height: 100vh;
    opacity: 0.8;
 }
-.loading-mask {
-   transition: 0.5s ease-in;
-   background: black;
-   position: absolute;
-   width: 50vw;
-   height: 100vh;
-   top: 0;
-}
-.loading-mask.left {
-   left: 0;
-   transform: translateX(0%);
-}
-.loading-mask.left.fade {
-   transform: translateX(-100%);
-}
-.loading-mask.right {
-   right: 0;
-}
-.loading-mask.right.fade {
-   transform: translateX(100%);
-}
+*/

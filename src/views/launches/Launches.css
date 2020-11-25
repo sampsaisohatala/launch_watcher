@@ -1,5 +1,7 @@
 .launches {
    width: 100vw;
+
+   min-height: 100vh;
 }
 .launches img {
    position: fixed;

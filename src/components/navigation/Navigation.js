@@ -15,7 +15,7 @@ function Navigation(props) {
 
    return (
       <header className="nav">
-         <span className="">Space Launch Watcher</span>
+         {/*<span className="">Space Launch Watcher</span>*/}
          <div>
             <DelayLink className="nav-link" to="/" delay={510} onDelayStart={handleDelayStart} onDelayEnd={handleDelayEnd}>
                Home

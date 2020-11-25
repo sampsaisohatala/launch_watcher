@@ -1,9 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import './NextLaunchTimer.css';
 
 function NextLaunchTimer(props) {
+   const [timeLeft, setTimeLeft] = useState('');
+
    const calculateTimeLeft = () => {
-      const difference = new Date(props.nextLaunch.launch_date_utc).getTime() - Date.now();
+      const difference = new Date(props.nextLaunch.net).getTime() - Date.now();
       let timeLeft = {};
       //console.log('calculateTimeLeft');
       if (difference > 0) {
@@ -17,8 +20,6 @@ function NextLaunchTimer(props) {
 
       return timeLeft;
    };
-
-   const [timeLeft, setTimeLeft] = useState('');
 
    // call to avoid waiting before updateLoop
    useEffect(() => {
@@ -41,15 +42,15 @@ function NextLaunchTimer(props) {
       if (!timeLeft[interval]) {
          return;
       }
-
       timerComponents.push(
-         <span key={interval}>
-            {timeLeft[interval]} {interval}{' '}
+         <span key={interval} className="time-component">
+            {timeLeft[interval]}
+            {interval !== 'seconds' ? <span className="time-semicolon">{' : '}</span> : ''}
          </span>
       );
    });
 
-   return <div>{timerComponents.length ? timerComponents : <span>No new launch data available...</span>}</div>;
+   return <div className="timer">{timerComponents.length ? timerComponents : <span className="time-not-available">No new launch data available...</span>}</div>;
 }
 
 export default NextLaunchTimer;
