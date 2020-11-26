@@ -1,10 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Loadingscreen from '../../components/loadingScreen/Loadingscreen';
-import Filter from '../../components/filter/Filter';
+//import Loadingscreen from '../../components/loadingScreen/Loadingscreen';
+import Filter from '../components/Filter';
 import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Launches.css';
 
 function Launches(props) {
    const allLaunchUrl = 'https://api.spacexdata.com/v3/launches';
@@ -59,7 +58,6 @@ function Launches(props) {
 
    return (
       <div className="launches">
-         <img src={process.env.PUBLIC_URL + `/images/spacex.jpg`} alt=""></img>
          <h1 className="text-center">{`${filter} launches`.toUpperCase()}</h1>
          <Filter setFilter={setFilter} />
          <div className="m-5">
@@ -84,9 +82,6 @@ function Launches(props) {
                </tbody>
             </Table>
          </div>
-         <div className={allLaunches && !props.delay ? 'loading-mask left fade' : 'loading-mask left'} />
-         <div className={allLaunches && !props.delay ? 'loading-mask right fade' : 'loading-mask right'} />
-         <div className={allLaunches && !props.delay ? 'loading-spinner fade' : 'loading-spinner'}>{/* add spinner here*/}</div>
       </div>
    );
 }
