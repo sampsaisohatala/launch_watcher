@@ -1,9 +1,19 @@
 // Timer for home page
-.launch-timer {
-   background: $off-black;
+.timer {
+   color: $off-white;
+   font-size: $xxl-size;
 }
 
 // Timer for individual launch modulas
-.launch-timer--alt {
+.timer--alt {
    background: $off-black;
+}
+
+.timer__not-available {
+   color: $off-white;
+   font-size: $l-size;
+}
+
+.timer__semicolon {
+   font-size: $l-size;
 }

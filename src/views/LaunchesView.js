@@ -5,7 +5,7 @@ import Filter from '../components/Filter';
 import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Launches(props) {
+function LaunchesView(props) {
    const allLaunchUrl = 'https://api.spacexdata.com/v3/launches';
    const allPadsUrl = 'https://api.spacexdata.com/v3/launchpads';
    const [allLaunches, setAllLaunches] = useState(null);
@@ -86,4 +86,4 @@ function Launches(props) {
    );
 }
 
-export default Launches;
+export default LaunchesView;

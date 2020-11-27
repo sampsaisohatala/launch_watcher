@@ -44,12 +44,12 @@ function NextLaunchTimer(props) {
       timerComponents.push(
          <span key={interval} className="time-component">
             {timeLeft[interval]}
-            {interval !== 'seconds' ? <span className="time-semicolon">{' : '}</span> : ''}
+            {interval !== 'seconds' ? <span className="timer__semicolon">{' : '}</span> : ''}
          </span>
       );
    });
 
-   return <div className="timer">{timerComponents.length ? timerComponents : <span className="time-not-available">No new launch data available...</span>}</div>;
+   return <div className="timer">{timerComponents.length ? timerComponents : <span className="timer__not-available">No new launch data available...</span>}</div>;
 }
 
 export default NextLaunchTimer;
