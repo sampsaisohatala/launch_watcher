@@ -20,7 +20,8 @@
     "react-scripts": "^4.0.1",
     "react-spring": "^8.0.27",
     "react-springs": "^1.1.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

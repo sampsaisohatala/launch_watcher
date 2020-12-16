@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 //import Loadingscreen from '../../components/loadingScreen/Loadingscreen';
-import Filter from '../components/Filter';
+import Filter from './Filter';
 import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
