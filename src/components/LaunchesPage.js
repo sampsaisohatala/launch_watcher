@@ -6,59 +6,59 @@ import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function LaunchesView(props) {
-   const allLaunchUrl = 'https://api.spacexdata.com/v3/launches';
-   const allPadsUrl = 'https://api.spacexdata.com/v3/launchpads';
-   const [allLaunches, setAllLaunches] = useState(null);
-   const [allPads, setAllPads] = useState([]);
-   const [filter, setFilter] = useState('all');
-   const [filteredLaunches, setFilteredLaunches] = useState([]);
+   // const allLaunchUrl = 'https://api.spacexdata.com/v3/launches';
+   // const allPadsUrl = 'https://api.spacexdata.com/v3/launchpads';
+   // const [allLaunches, setAllLaunches] = useState(null);
+   // const [allPads, setAllPads] = useState([]);
+   // const [filter, setFilter] = useState('all');
+   // const [filteredLaunches, setFilteredLaunches] = useState([]);
 
-   // fetch next available launch
-   useEffect(() => {
-      fetch(allLaunchUrl)
-         .then((res) => res.json())
-         .then((json) => {
-            setAllLaunches(json);
-         });
-      fetch(allPadsUrl)
-         .then((res) => res.json())
-         .then((json) => {
-            setAllPads(json);
-         });
-   }, []);
+   // // fetch next available launch
+   // useEffect(() => {
+   //    fetch(allLaunchUrl)
+   //       .then((res) => res.json())
+   //       .then((json) => {
+   //          setAllLaunches(json);
+   //       });
+   //    fetch(allPadsUrl)
+   //       .then((res) => res.json())
+   //       .then((json) => {
+   //          setAllPads(json);
+   //       });
+   // }, []);
 
-   useEffect(() => {
-      if (allLaunches) filteredLaunchHandler();
-   }, [allLaunches, filter]);
+   // useEffect(() => {
+   //    if (allLaunches) filteredLaunchHandler();
+   // }, [allLaunches, filter]);
 
-   const filteredLaunchHandler = () => {
-      let launches;
-      let sortedLaunches;
-      console.log(new Date(), ' / ', allLaunches[0].launch_date_utc);
+   // const filteredLaunchHandler = () => {
+   //    let launches;
+   //    let sortedLaunches;
+   //    console.log(new Date(), ' / ', allLaunches[0].launch_date_utc);
 
-      switch (filter) {
-         case 'future':
-            launches = allLaunches.filter((launch) => new Date() < new Date(launch.launch_date_utc));
-            sortedLaunches = launches.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
-            setFilteredLaunches(sortedLaunches);
-            break;
+   //    switch (filter) {
+   //       case 'future':
+   //          launches = allLaunches.filter((launch) => new Date() < new Date(launch.launch_date_utc));
+   //          sortedLaunches = launches.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
+   //          setFilteredLaunches(sortedLaunches);
+   //          break;
 
-         case 'past':
-            launches = allLaunches.filter((launch) => new Date() > new Date(launch.launch_date_utc));
-            sortedLaunches = launches.sort((a, b) => b.launch_date_unix - a.launch_date_unix);
-            setFilteredLaunches(sortedLaunches);
-            break;
+   //       case 'past':
+   //          launches = allLaunches.filter((launch) => new Date() > new Date(launch.launch_date_utc));
+   //          sortedLaunches = launches.sort((a, b) => b.launch_date_unix - a.launch_date_unix);
+   //          setFilteredLaunches(sortedLaunches);
+   //          break;
 
-         default:
-            sortedLaunches = allLaunches.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
-            setFilteredLaunches(sortedLaunches);
-            break;
-      }
-   };
+   //       default:
+   //          sortedLaunches = allLaunches.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
+   //          setFilteredLaunches(sortedLaunches);
+   //          break;
+   //    }
+   // };
 
    return (
       <div className="launches">
-         <h1 className="text-center">{`${filter} launches`.toUpperCase()}</h1>
+         {/* <h1 className="text-center">{`${filter} launches`.toUpperCase()}</h1>
          <Filter setFilter={setFilter} />
          <div className="m-5">
             <Table striped bordered hover variant="dark">
@@ -81,7 +81,7 @@ function LaunchesView(props) {
                   ))}
                </tbody>
             </Table>
-         </div>
+         </div> */}
       </div>
    );
 }

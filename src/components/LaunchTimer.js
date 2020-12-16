@@ -1,13 +1,14 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 
 function NextLaunchTimer(props) {
    const [timeLeft, setTimeLeft] = useState('');
+   const launchTime = parseInt(props.launchTime) * 1000;
 
    const calculateTimeLeft = () => {
-      const difference = new Date(props.nextLaunch.net).getTime() - Date.now();
+      const difference = launchTime - moment().valueOf();
       let timeLeft = {};
-      //console.log('calculateTimeLeft');
       if (difference > 0) {
          timeLeft = {
             days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -16,7 +17,6 @@ function NextLaunchTimer(props) {
             seconds: ('0' + Math.floor((difference / 1000) % 60)).slice(-2),
          };
       }
-
       return timeLeft;
    };
 
