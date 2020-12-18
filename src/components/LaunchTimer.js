@@ -4,20 +4,25 @@ import moment from 'moment';
 
 function NextLaunchTimer(props) {
    const [timeLeft, setTimeLeft] = useState('');
-   const launchTime = parseInt(props.launchTime) * 1000;
+   const launchTime = moment(props.launchTime).valueOf();
 
    const calculateTimeLeft = () => {
-      const difference = launchTime - moment().valueOf();
-      let timeLeft = {};
-      if (difference > 0) {
-         timeLeft = {
-            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-            hours: ('0' + Math.floor((difference / (1000 * 60 * 60)) % 24)).slice(-2),
-            minutes: ('0' + Math.floor((difference / 1000 / 60) % 60)).slice(-2),
-            seconds: ('0' + Math.floor((difference / 1000) % 60)).slice(-2),
-         };
-      }
-      return timeLeft;
+      const difference = Math.abs(launchTime - moment().valueOf());
+      return {
+         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+         hours: ('0' + Math.floor((difference / (1000 * 60 * 60)) % 24)).slice(-2),
+         minutes: ('0' + Math.floor((difference / 1000 / 60) % 60)).slice(-2),
+         seconds: ('0' + Math.floor((difference / 1000) % 60)).slice(-2),
+      };
+   };
+
+   const timeFormat = () => {
+      const format = launchTime - moment().valueOf() > 0 ? '-' : '+';
+      return (
+         <span className="timer__semicolon" key="timeformat">
+            T{format}{' '}
+         </span>
+      );
    };
 
    // call to avoid waiting before updateLoop
@@ -35,7 +40,7 @@ function NextLaunchTimer(props) {
       };
    });
 
-   const timerComponents = [];
+   const timerComponents = [timeFormat()];
 
    Object.keys(timeLeft).forEach((interval) => {
       if (!timeLeft[interval]) {

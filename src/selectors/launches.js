@@ -1,12 +1,9 @@
-//import moment from 'moment';
-
 // get next launch from upcoming launches
-// issue was that, sometimes api gives all ready flown flight as next launch
-// export const getNextLaunch = (upcomingLaunches) => {
-//    if (!upcomingLaunches) return;
-//    console.log(upcomingLaunches);
-//    upcomingLaunches.forEach((launch, i) => {
-//       const unixAsNumber = parseInt(launch.sort_date);
-//       console.log(moment.unix(unixAsNumber));
-//    });
-// };
+export const getNextLaunch = (upcomingLaunches) => {
+   if (!upcomingLaunches) return;
+   // get the first upcoming launch that hasnt happend yet
+   for (let index = 0; index < upcomingLaunches.length; index++) {
+      const difference = new Date(upcomingLaunches[index].net).getTime() - Date.now();
+      if (difference > 0) return upcomingLaunches[index];
+   }
+};

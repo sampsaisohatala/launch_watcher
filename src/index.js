@@ -4,7 +4,8 @@ import './index.css';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { asyncSetLaunches } from './actions/launches';
+import { asyncSetUpcomingLaunches } from './actions/launches';
+import Loadingscreen from './components/Loadingscreen';
 
 // styles
 import 'normalize.css/normalize.css';
@@ -20,9 +21,9 @@ const jsx = (
 );
 
 // Temparary loading screen
-ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
+ReactDOM.render(<Loadingscreen />, document.getElementById('root'));
 
-store.dispatch(asyncSetLaunches()).then(() => {
+store.dispatch(asyncSetUpcomingLaunches()).then(() => {
    ReactDOM.render(jsx, document.getElementById('root'));
 });
 
