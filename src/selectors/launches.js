@@ -7,3 +7,6 @@ export const getNextLaunch = (upcomingLaunches) => {
       if (difference > 0) return upcomingLaunches[index];
    }
 };
+// // status:
+// id: 3
+// name: "Success"

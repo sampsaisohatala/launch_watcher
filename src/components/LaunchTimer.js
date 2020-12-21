@@ -19,7 +19,7 @@ function NextLaunchTimer(props) {
    const timeFormat = () => {
       const format = launchTime - moment().valueOf() > 0 ? '-' : '+';
       return (
-         <span className="timer__semicolon" key="timeformat">
+         <span className={!props.individual ? 'timer__semicolon' : 'timer__semicolon--alt'} key="timeformat">
             T{format}{' '}
          </span>
       );
@@ -47,14 +47,14 @@ function NextLaunchTimer(props) {
          return;
       }
       timerComponents.push(
-         <span key={interval} className="time-component">
+         <span key={interval}>
             {timeLeft[interval]}
-            {interval !== 'seconds' ? <span className="timer__semicolon">{' : '}</span> : ''}
+            {interval !== 'seconds' ? <span className={!props.individual ? 'timer__semicolon' : 'timer__semicolon--alt'}>{' : '}</span> : ''}
          </span>
       );
    });
 
-   return <div className="timer">{timerComponents.length ? timerComponents : <span className="timer__not-available">No new launch data available...</span>}</div>;
+   return <div className={!props.individual ? 'timer' : 'timer--alt'}>{timerComponents.length ? timerComponents : <span className="timer__not-available">No new launch data available...</span>}</div>;
 }
 
 export default NextLaunchTimer;

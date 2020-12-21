@@ -1,6 +1,7 @@
 /// LAUNCHES ACTIONS
 
 // URL docs -> https://ll.thespacedevs.com/2.0.0/swagger
+// https://thespacedevs.com/llapi
 const upcomingLaunches = 'https://ll.thespacedevs.com/2.0.0/launch/upcoming/';
 
 // SET_NEXT_LAUNCH

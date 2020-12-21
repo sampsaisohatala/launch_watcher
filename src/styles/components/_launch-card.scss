@@ -1,0 +1,26 @@
+.launch-card {
+   background: $off-something;
+   margin: $l-size 0;
+   width: 1000px;
+   height: 300px;
+   display: flex;
+   //    border: 5px solid black;
+   border-radius: 30px;
+   overflow: hidden;
+}
+
+.launch-card__image-container {
+   height: 300px;
+   width: 240px;
+   display: flex;
+   overflow: hidden;
+}
+
+.launch-card__image {
+   width: 240px;
+   object-fit: cover;
+}
+
+.launch-card__info {
+   padding: $m-size;
+}

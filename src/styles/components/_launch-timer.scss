@@ -4,16 +4,26 @@
    font-size: $xxl-size;
 }
 
-// Timer for individual launch modulas
-.timer--alt {
-   background: $off-black;
-}
-
 .timer__not-available {
    color: $off-white;
    font-size: $l-size;
 }
 
 .timer__semicolon {
+   font-size: $l-size;
+}
+
+// Timer for individual launch modulas
+.timer--alt {
+   color: $off-white;
+   font-size: $l-size;
+}
+
+.timer__not-available--alt {
+   color: $off-white;
+   font-size: $l-size;
+}
+
+.timer__semicolon--alt {
    font-size: $l-size;
 }

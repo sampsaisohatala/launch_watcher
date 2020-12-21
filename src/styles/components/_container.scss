@@ -8,3 +8,12 @@
    margin: 0 auto;
    padding: 0 $m-size;
 }
+.container--scrollable {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   max-width: 60rem;
+   margin: $xxl-size auto;
+   padding: $m-size;
+}
