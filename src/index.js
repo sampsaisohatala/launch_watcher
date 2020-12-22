@@ -22,10 +22,11 @@ const jsx = (
 
 // Temparary loading screen
 ReactDOM.render(<Loadingscreen />, document.getElementById('root'));
-
-store.dispatch(asyncSetUpcomingLaunches()).then(() => {
-   ReactDOM.render(jsx, document.getElementById('root'));
-});
+store.dispatch(asyncSetUpcomingLaunches());
+ReactDOM.render(jsx, document.getElementById('root'));
+// store.dispatch(asyncSetUpcomingLaunches()).then(() => {
+//    ReactDOM.render(jsx, document.getElementById('root'));
+// });
 
 // import React from 'react';
 // import ReactDOM from 'react-dom';

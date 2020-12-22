@@ -22,8 +22,6 @@ function HomePage(props) {
 }
 
 const mapStateToProps = (state) => {
-   console.log(getNextLaunch(state.launches.upcomingLaunches));
-
    return {
       upcomingLaunch: state.launches.upcomingLaunches ? state.launches.upcomingLaunches[0] : null, //getNextLaunch(state.launches.upcomingLaunches),
    };
