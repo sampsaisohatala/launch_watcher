@@ -16,13 +16,16 @@ export const asyncSetUpcomingLaunches = () => {
       const apiCallTimeLimit = 10;
       // Get data from localStorage if last api call has made in a apiCallTimeLimit
       if (moment.duration(moment().valueOf() - localStorage.getItem('timestamp')).asMinutes() < apiCallTimeLimit) {
-         console.log('From localStorage. Time from last api call:', moment.duration(moment().valueOf() - localStorage.getItem('timestamp')).asMinutes());
-         const launches = JSON.parse(localStorage.getItem('upcomingLaunches'));
-         dispatch(setUpcomingLaunches(launches));
+         // Not necessarily need to be promise, but it enables to use then in index.js
+         return Promise.resolve().then(() => {
+            console.log('From localStorage. Last API call', Math.floor(moment.duration(moment().valueOf() - localStorage.getItem('timestamp')).asMinutes()), 'minutes ago.');
+            const launches = JSON.parse(localStorage.getItem('upcomingLaunches'));
+            dispatch(setUpcomingLaunches(launches));
+         });
       }
       // Fetch data from API and save it to localStorage
       else {
-         console.log('Fetching data from api');
+         console.log('Fetching data from API');
          return fetch(upcomingLaunches)
             .then((res) => {
                if (res.status === 200) return res.json();
