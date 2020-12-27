@@ -21,6 +21,9 @@ function Navigation(props) {
             <Link className="navigation__nav-link" to="/launches">
                Launches
             </Link>
+            <Link className="navigation__nav-link" to="/events">
+               Events
+            </Link>
 
             {/* TODO: Add delay for the fade in/out animations */}
 

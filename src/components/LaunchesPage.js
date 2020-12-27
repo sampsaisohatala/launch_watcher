@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LaunchCard from './LaunchCard';
 
-function LaunchesView(props) {
+function LaunchesPage(props) {
    return <div className="container--scrollable">{props.upcomingLaunches ? props.upcomingLaunches.map((launch) => <LaunchCard key={launch.id} launch={launch} />) : <p>No data</p>}</div>;
 }
 
@@ -12,4 +12,4 @@ const mapStateToProps = (state) => {
    };
 };
 
-export default connect(mapStateToProps)(LaunchesView);
+export default connect(mapStateToProps)(LaunchesPage);
