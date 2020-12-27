@@ -11,8 +11,8 @@ const LaunchCard = ({ launch }) => {
          <div className="launch-card__info">
             <h3>{launch.name}</h3>
             <LaunchTimer launchTime={launch.net} individual />
-            <p>Status: {launch.status.name}</p>
-            <p>Provider: {launch.launch_service_provider.name}</p>
+            <p>Status: {launch.status}</p>
+            <p>Provider: {launch.provider}</p>
             <p>{launch.net}</p>
          </div>
       </div>

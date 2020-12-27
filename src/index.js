@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { asyncSetUpcomingLaunches } from './actions/launches';
+import { asyncSetLaunchesAndEvents, asyncSetUpcomingLaunches } from './actions/launches';
 import Loadingscreen from './components/Loadingscreen';
 
 // styles
@@ -21,6 +21,6 @@ const jsx = (
 
 ReactDOM.render(<Loadingscreen />, document.getElementById('root'));
 
-store.dispatch(asyncSetUpcomingLaunches()).then(() => {
+store.dispatch(asyncSetLaunchesAndEvents()).then(() => {
    ReactDOM.render(jsx, document.getElementById('root'));
 });

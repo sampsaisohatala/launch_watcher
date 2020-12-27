@@ -2,10 +2,25 @@ import moment from 'moment';
 
 /// LAUNCHES ACTIONS
 
-// URL docs -> https://ll.thespacedevs.com/2.0.0/swagger
-// https://thespacedevs.com/llapi
+// URL docs -> https://ll.thespacedevs.com/2.0.0/swagger    /   https://thespacedevs.com/llapi
+
 const upcomingLaunchesURL = 'https://ll.thespacedevs.com/2.0.0/launch/upcoming/';
-const upcomingEventsURL = '';
+const upcomingEventsURL = 'https://ll.thespacedevs.com/2.0.0/event/upcoming/';
+
+const apiCallTimeLimit = 10;
+let readLocalStorage;
+
+export const asyncSetLaunchesAndEvents = () => {
+   // Get data from localStorage if last api call has made in a apiCallTimeLimit
+   readLocalStorage = moment.duration(moment().valueOf() - localStorage.getItem('timestamp')).asMinutes() < apiCallTimeLimit;
+
+   if (readLocalStorage) console.log('Reading data from localStorage. Last API call', Math.floor(moment.duration(moment().valueOf() - localStorage.getItem('timestamp')).asMinutes()), 'minutes ago.');
+   else console.log('Fetching data from API.');
+
+   return (dispatch) => {
+      return dispatch(asyncSetUpcomingLaunches()).then(() => dispatch(asyncSetEvents()));
+   };
+};
 
 // SET_UPCOMING_LAUNCHES
 export const setUpcomingLaunches = (launches) => ({
@@ -14,49 +29,87 @@ export const setUpcomingLaunches = (launches) => ({
 });
 export const asyncSetUpcomingLaunches = () => {
    return (dispatch) => {
-      const apiCallTimeLimit = 10;
-      // Get data from localStorage if last api call has made in a apiCallTimeLimit
-      if (moment.duration(moment().valueOf() - localStorage.getItem('timestamp')).asMinutes() < apiCallTimeLimit) {
-         // Not necessarily need to be promise, but it enables to use 'then' in index.js
+      // Read from localStorage
+      if (readLocalStorage) {
          return Promise.resolve().then(() => {
-            console.log('From localStorage. Last API call', Math.floor(moment.duration(moment().valueOf() - localStorage.getItem('timestamp')).asMinutes()), 'minutes ago.');
             const launches = JSON.parse(localStorage.getItem('upcomingLaunches'));
             dispatch(setUpcomingLaunches(launches));
          });
       }
       // Fetch data from API and save it to localStorage
       else {
-         console.log('Fetching data from API');
          return fetch(upcomingLaunchesURL)
             .then((res) => {
                if (res.status === 200) return res.json();
-               else throw new Error(`Response status code: ${res.status}`);
+               else throw new Error(`Launches response status code: ${res.status}`);
             })
             .then((result) => {
+               // formt data
+               const formattedData = formatLaunchData(result.results);
+
+               console.log('launches', formattedData);
+
                localStorage.setItem('timestamp', moment().valueOf());
-               localStorage.setItem('upcomingLaunches', JSON.stringify(result.results));
-               dispatch(setUpcomingLaunches(result.results));
+               localStorage.setItem('upcomingLaunches', JSON.stringify(formattedData));
+               dispatch(setUpcomingLaunches(formattedData));
             })
             .catch((err) => console.log(err));
       }
    };
 };
-// SET_UPCOMING_EVENTS
-export const setUpcomingEvents = (events) => ({
-   type: 'SET_UPCOMING_EVENTS',
+
+// SET_EVENTS
+export const setEvents = (events) => ({
+   type: 'SET_EVENTS',
    events,
 });
 
-export const asyncSetEvents = (dispatch) => {
-   return fetch(upcomingEventsURL)
-      .then((res) => {
-         if (res.status === 200) return res.json();
-         else throw new Error(`Response status code: ${res.status}`);
-      })
-      .then((result) => {
-         // localStorage.setItem('timestamp', moment().valueOf());
-         // localStorage.setItem('upcomingLaunches', JSON.stringify(result.results));
-         dispatch(setUpcomingEvents(result.results));
-      })
-      .catch((err) => console.log(err));
+export const asyncSetEvents = () => {
+   return (dispatch) => {
+      // Read from localStorage
+      if (readLocalStorage) {
+         return Promise.resolve().then(() => {
+            const events = JSON.parse(localStorage.getItem('events'));
+            dispatch(setEvents(events));
+         });
+      }
+      // Fetch data from API and save it to localStorage
+      else {
+         return fetch(upcomingEventsURL)
+            .then((res) => {
+               if (res.status === 200) return res.json();
+               else throw new Error(`Events response status code: ${res.status}`);
+            })
+            .then((result) => {
+               // formt data
+               const formattedData = formatEventData(result.results);
+
+               console.log('events', formattedData);
+
+               localStorage.setItem('events', JSON.stringify(formattedData));
+               dispatch(setEvents(formattedData));
+            })
+            .catch((err) => console.log(err));
+      }
+   };
+};
+
+const formatLaunchData = (launches) => {
+   return launches.map((launch) => ({
+      id: launch.id,
+      image: launch.image,
+      name: launch.name,
+      status: launch.status.name,
+      provider: launch.launch_service_provider.name,
+      net: launch.net,
+   }));
+};
+
+const formatEventData = (events) => {
+   return events.map((event) => ({
+      id: event.id,
+      //image: event.image,
+      name: event.name,
+      net: event.date,
+   }));
 };
