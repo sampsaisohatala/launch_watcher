@@ -13,6 +13,8 @@ const LaunchCard = ({ launch }) => {
             <LaunchTimer launchTime={launch.net} individual />
             <p>Status: {launch.status}</p>
             <p>Provider: {launch.provider}</p>
+            <p>Location: {launch.location}</p>
+            {launch.description && <p>Description: {launch.description}</p>}
             <p>{launch.net}</p>
          </div>
       </div>

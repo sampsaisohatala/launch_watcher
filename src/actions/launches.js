@@ -10,6 +10,31 @@ const upcomingEventsURL = 'https://ll.thespacedevs.com/2.0.0/event/upcoming/';
 const apiCallTimeLimit = 10;
 let readLocalStorage;
 
+const formatLaunchData = (launches) => {
+   return launches.map((launch) => ({
+      id: launch.id,
+      image: launch.image,
+      name: launch.name,
+      status: launch.status.name,
+      provider: launch.launch_service_provider.name,
+      net: launch.net,
+      description: launch.mission && launch.mission.description,
+      location: launch.pad.location.name,
+   }));
+};
+
+const formatEventData = (events) => {
+   return events.map((event) => ({
+      id: event.id,
+      image: event.feature_image,
+      name: event.name,
+      net: event.date,
+      location: event.location,
+      video_url: event.video_url,
+      description: event.description,
+   }));
+};
+
 export const asyncSetLaunchesAndEvents = () => {
    // Get data from localStorage if last api call has made in a apiCallTimeLimit
    readLocalStorage = moment.duration(moment().valueOf() - localStorage.getItem('timestamp')).asMinutes() < apiCallTimeLimit;
@@ -47,7 +72,7 @@ export const asyncSetUpcomingLaunches = () => {
                // formt data
                const formattedData = formatLaunchData(result.results);
 
-               console.log('launches', formattedData);
+               console.log('launches', result);
 
                localStorage.setItem('timestamp', moment().valueOf());
                localStorage.setItem('upcomingLaunches', JSON.stringify(formattedData));
@@ -84,7 +109,7 @@ export const asyncSetEvents = () => {
                // formt data
                const formattedData = formatEventData(result.results);
 
-               console.log('events', formattedData);
+               console.log('events', result.results);
 
                localStorage.setItem('events', JSON.stringify(formattedData));
                dispatch(setEvents(formattedData));
@@ -92,24 +117,4 @@ export const asyncSetEvents = () => {
             .catch((err) => console.log(err));
       }
    };
-};
-
-const formatLaunchData = (launches) => {
-   return launches.map((launch) => ({
-      id: launch.id,
-      image: launch.image,
-      name: launch.name,
-      status: launch.status.name,
-      provider: launch.launch_service_provider.name,
-      net: launch.net,
-   }));
-};
-
-const formatEventData = (events) => {
-   return events.map((event) => ({
-      id: event.id,
-      //image: event.image,
-      name: event.name,
-      net: event.date,
-   }));
 };
