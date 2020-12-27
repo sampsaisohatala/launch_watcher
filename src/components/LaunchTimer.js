@@ -16,15 +16,6 @@ function NextLaunchTimer(props) {
       };
    };
 
-   const timeFormat = () => {
-      const format = launchTime - moment().valueOf() > 0 ? '-' : '+';
-      return (
-         <span className={!props.individual ? 'timer__semicolon' : 'timer__semicolon--alt'} key="timeformat">
-            T{format}{' '}
-         </span>
-      );
-   };
-
    // call to avoid waiting before updateLoop
    useEffect(() => {
       setTimeLeft(calculateTimeLeft());
@@ -40,18 +31,39 @@ function NextLaunchTimer(props) {
       };
    });
 
+   // Create "T- / T+"
+   const timeFormat = () => {
+      const format = launchTime - moment().valueOf() > 0 ? '-' : '+';
+      return (
+         <div className={!props.individual ? 'timer__semicolon' : 'timer__semicolon--alt'} key="timeformat">
+            T{format}{' '}
+         </div>
+      );
+   };
+
    const timerComponents = [timeFormat()];
 
+   // Create timer components
    Object.keys(timeLeft).forEach((interval) => {
       if (!timeLeft[interval]) {
          return;
       }
       timerComponents.push(
-         <span key={interval}>
-            {timeLeft[interval]}
-            {interval !== 'seconds' ? <span className={!props.individual ? 'timer__semicolon' : 'timer__semicolon--alt'}>{' : '}</span> : ''}
-         </span>
+         // Add timer unit with number and text
+         <div key={interval} className="timer__unit">
+            <span className={!props.individual ? 'timer__unit_number' : 'timer__unit_number--alt'}>{timeLeft[interval]}</span>
+            <span className={!props.individual ? 'timer__unit_text' : 'timer__unit_text--alt'}>{interval}</span>
+         </div>
       );
+
+      if (interval !== 'seconds') {
+         timerComponents.push(
+            // Add semicolon
+            <div key={interval + ':'} className={!props.individual ? 'timer__semicolon' : 'timer__semicolon--alt'}>
+               {' : '}
+            </div>
+         );
+      }
    });
 
    return <div className={!props.individual ? 'timer' : 'timer--alt'}>{timerComponents.length ? timerComponents : <span className="timer__not-available">No new launch data available...</span>}</div>;

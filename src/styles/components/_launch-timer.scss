@@ -1,29 +1,49 @@
 // Timer for home page
 .timer {
    color: $off-white;
-   font-size: $xxl-size;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
 }
 
 .timer__not-available {
    color: $off-white;
    font-size: $l-size;
 }
-
+.timer__unit {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+.timer__unit_number {
+   font-size: $xxl-size;
+}
+.timer__unit_text {
+   font-size: $m-size;
+   text-align: center;
+   text-transform: uppercase;
+}
 .timer__semicolon {
    font-size: $l-size;
+   padding: 0 1rem;
 }
 
 // Timer for individual launch modulas
 .timer--alt {
    color: $off-white;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+}
+.timer__unit_number--alt {
    font-size: $l-size;
 }
-
-.timer__not-available--alt {
-   color: $off-white;
-   font-size: $l-size;
+.timer__unit_text--alt {
+   font-size: $s-size;
+   text-align: center;
+   text-transform: uppercase;
 }
-
 .timer__semicolon--alt {
-   font-size: $l-size;
+   font-size: $m-size;
+   padding: 0 0.5rem;
 }
