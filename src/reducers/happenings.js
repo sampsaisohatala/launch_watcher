@@ -2,13 +2,12 @@ import moment from 'moment';
 
 // Launches Reducer
 
-const happeningsReducerDefaultState = {};
+const happeningsReducerDefaultState = [];
 
 const happeningsReducer = (state = happeningsReducerDefaultState, action) => {
    switch (action.type) {
       case 'SET_HAPPENINGS':
-         if (state.length === undefined) {
-            // korjaa if
+         if (state.length === 0) {
             return action.happenings;
          } else {
             // sort array here once, so we dont have to sort it everytime

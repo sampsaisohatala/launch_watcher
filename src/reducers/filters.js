@@ -1,16 +1,25 @@
 // Filters Reducer
 
 const filtersReducerDefaultState = {
-   // page transition delay
-   delay: true,
+   category: 'all',
 };
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
    switch (action.type) {
-      case 'SET_DELAY':
+      case 'SET_CATEGORY_ALL':
          return {
             ...state,
-            delay: action.delay,
+            category: 'all',
+         };
+      case 'SET_CATEGORY_LAUNCHES':
+         return {
+            ...state,
+            category: 'launches',
+         };
+      case 'SET_CATEGORY_EVENTS':
+         return {
+            ...state,
+            category: 'events',
          };
       default:
          return state;

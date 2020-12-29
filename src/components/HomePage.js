@@ -22,6 +22,7 @@ function HomePage(props) {
 }
 
 const mapStateToProps = (state) => {
+   console.log('State:', state);
    return {
       nextHappening: getNextHappening(state.happenings),
    };

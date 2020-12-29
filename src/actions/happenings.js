@@ -13,6 +13,7 @@ let readLocalStorage;
 const formatLaunchData = (launches) => {
    return launches.map((launch) => ({
       id: launch.id,
+      launch: true,
       image: launch.image,
       name: launch.name,
       status: launch.status.name,
@@ -26,6 +27,7 @@ const formatLaunchData = (launches) => {
 const formatEventData = (events) => {
    return events.map((event) => ({
       id: event.id,
+      launch: false,
       image: event.feature_image,
       name: event.name,
       net: event.date,
@@ -69,11 +71,7 @@ const asyncSetLaunches = () => {
                else throw new Error(`Launches response status code: ${res.status}`);
             })
             .then((result) => {
-               // formt data
                const formattedData = formatLaunchData(result.results);
-
-               console.log('happenings', formattedData);
-
                localStorage.setItem('timestamp', moment().valueOf());
                localStorage.setItem('upcomingLaunches', JSON.stringify(formattedData));
                dispatch(setHappenings(formattedData));
@@ -99,11 +97,7 @@ const asyncSetEvents = () => {
                else throw new Error(`Events response status code: ${res.status}`);
             })
             .then((result) => {
-               // formt data
                const formattedData = formatEventData(result.results);
-
-               console.log('events', result.results);
-
                localStorage.setItem('events', JSON.stringify(formattedData));
                dispatch(setHappenings(formattedData));
             })

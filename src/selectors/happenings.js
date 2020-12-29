@@ -5,6 +5,10 @@ export const getNextHappening = (happenings) => {
    }
 };
 
-export const getVisibleHappenings = (happenings, filters) => {
-   return happenings;
+export const getVisibleHappenings = (happenings, { category }) => {
+   return happenings.filter((happening) => {
+      if (category === 'all') return happening;
+      else if (category === 'launches') return happening.launch;
+      else if (category === 'events') return !happening.launch;
+   });
 };

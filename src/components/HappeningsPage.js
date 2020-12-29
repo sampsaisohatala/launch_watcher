@@ -19,7 +19,7 @@ function LaunchesPage(props) {
 
 const mapStateToProps = (state) => {
    return {
-      happenings: state.happenings ? getVisibleHappenings(state.happenings) : null,
+      happenings: state.happenings ? getVisibleHappenings(state.happenings, state.filters) : null,
    };
 };
 

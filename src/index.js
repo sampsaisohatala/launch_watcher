@@ -22,5 +22,6 @@ const jsx = (
 ReactDOM.render(<Loadingscreen />, document.getElementById('root'));
 
 store.dispatch(asyncSetLaunchesAndEvents()).then(() => {
+   // console.log('done');
    ReactDOM.render(jsx, document.getElementById('root'));
 });
