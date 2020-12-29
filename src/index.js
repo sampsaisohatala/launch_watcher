@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { asyncSetLaunchesAndEvents, asyncSetUpcomingLaunches } from './actions/launches';
+import { asyncSetLaunchesAndEvents } from './actions/happenings';
 import Loadingscreen from './components/Loadingscreen';
 
 // styles

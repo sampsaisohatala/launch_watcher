@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useMemo } from 'react';
 import LaunchTimer from './LaunchTimer';
-import { getNextLaunch, getNextHappening } from '../selectors/launches';
+import { getNextHappening } from '../selectors/happenings';
 
 function HomePage(props) {
    const nextHappening = useMemo(() => props.nextHappening, [props.nextHappening]);
@@ -23,7 +23,7 @@ function HomePage(props) {
 
 const mapStateToProps = (state) => {
    return {
-      nextHappening: getNextHappening(state.launches.upcomingLaunches, state.launches.events),
+      nextHappening: getNextHappening(state.happenings),
    };
 };
 

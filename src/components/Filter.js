@@ -10,8 +10,8 @@ function Filter(props) {
          <div className="select">
             <select name="todos" className="filter-todo" onChange={filterHandler}>
                <option value="all">All</option>
-               <option value="future">Future</option>
-               <option value="past">Past</option>
+               <option value="launches">Launches</option>
+               <option value="events">Events</option>
             </select>
          </div>
       </form>

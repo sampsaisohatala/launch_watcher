@@ -43,22 +43,22 @@ export const asyncSetLaunchesAndEvents = () => {
    else console.log('Fetching data from API.');
 
    return (dispatch) => {
-      return dispatch(asyncSetUpcomingLaunches()).then(() => dispatch(asyncSetEvents()));
+      return dispatch(asyncSetLaunches()).then(() => dispatch(asyncSetEvents()));
    };
 };
 
-// SET_UPCOMING_LAUNCHES
-export const setUpcomingLaunches = (launches) => ({
-   type: 'SET_UPCOMING_LAUNCHES',
-   launches,
+// SET_HAPPENINGS
+const setHappenings = (happenings) => ({
+   type: 'SET_HAPPENINGS',
+   happenings,
 });
-export const asyncSetUpcomingLaunches = () => {
+const asyncSetLaunches = () => {
    return (dispatch) => {
       // Read from localStorage
       if (readLocalStorage) {
          return Promise.resolve().then(() => {
             const launches = JSON.parse(localStorage.getItem('upcomingLaunches'));
-            dispatch(setUpcomingLaunches(launches));
+            dispatch(setHappenings(launches));
          });
       }
       // Fetch data from API and save it to localStorage
@@ -72,30 +72,23 @@ export const asyncSetUpcomingLaunches = () => {
                // formt data
                const formattedData = formatLaunchData(result.results);
 
-               console.log('launches', result);
+               console.log('happenings', formattedData);
 
                localStorage.setItem('timestamp', moment().valueOf());
                localStorage.setItem('upcomingLaunches', JSON.stringify(formattedData));
-               dispatch(setUpcomingLaunches(formattedData));
+               dispatch(setHappenings(formattedData));
             })
             .catch((err) => console.log(err));
       }
    };
 };
-
-// SET_EVENTS
-export const setEvents = (events) => ({
-   type: 'SET_EVENTS',
-   events,
-});
-
-export const asyncSetEvents = () => {
+const asyncSetEvents = () => {
    return (dispatch) => {
       // Read from localStorage
       if (readLocalStorage) {
          return Promise.resolve().then(() => {
             const events = JSON.parse(localStorage.getItem('events'));
-            dispatch(setEvents(events));
+            dispatch(setHappenings(events));
          });
       }
       // Fetch data from API and save it to localStorage
@@ -112,7 +105,7 @@ export const asyncSetEvents = () => {
                console.log('events', result.results);
 
                localStorage.setItem('events', JSON.stringify(formattedData));
-               dispatch(setEvents(formattedData));
+               dispatch(setHappenings(formattedData));
             })
             .catch((err) => console.log(err));
       }
