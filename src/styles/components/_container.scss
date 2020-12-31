@@ -8,6 +8,20 @@
    margin: 0 auto;
    padding: 0 $m-size;
 }
+.container--absolute {
+   position: absolute;
+   top: 0;
+   transform: translateX(-50%);
+   left: 50%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   max-width: 60rem;
+   height: 100vh;
+   margin: 0 auto;
+   padding: 0 $m-size;
+}
 .container--scrollable {
    display: flex;
    flex-direction: column;

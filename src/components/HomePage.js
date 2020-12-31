@@ -8,7 +8,7 @@ function HomePage(props) {
    const nextHappening = useMemo(() => props.nextHappening, [props.nextHappening]);
 
    return (
-      <div className="container">
+      <div className="container--absolute">
          {/* Next launch information */}
          {nextHappening && <h1 className="home-page__information">{`${nextHappening.name}`}</h1>}
 

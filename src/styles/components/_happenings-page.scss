@@ -1,0 +1,14 @@
+.happenings-page__scroll-button {
+   position: fixed;
+   bottom: 0;
+   right: 0;
+   opacity: 0;
+   margin: $m-size;
+   width: $l-size;
+   height: $l-size;
+   transition: 0.5s ease-in-out;
+}
+
+.happenings-page__scroll-button.active {
+   opacity: 1;
+}
