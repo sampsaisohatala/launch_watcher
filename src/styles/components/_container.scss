@@ -17,17 +17,36 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   max-width: 60rem;
-   height: 100vh;
-   margin: 0 auto;
-   padding: 0 $m-size;
+   width: 100%;
+   height: 100%;
+   margin: 0 0;
+   padding: $xl-size;
+   pointer-events: none;
+   // position: absolute;
+   // top: 0;
+   // transform: translateX(-50%);
+   // left: 50%;
+   // display: flex;
+   // flex-direction: column;
+   // align-items: center;
+   // justify-content: center;
+   // max-width: 1000px;
+   // height: 100vh;
+   // margin: 0 auto;
+   // padding: 0 $m-size;
 }
 .container--scrollable {
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   max-width: 60rem;
+   max-width: 1000px;
    margin: $xxl-size auto;
-   padding: $m-size;
+   padding: $xl-size;
+}
+
+@media only screen and (max-width: 750px) {
+   .container--scrollable {
+      padding: $m-size;
+   }
 }

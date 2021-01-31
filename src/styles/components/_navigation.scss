@@ -13,7 +13,6 @@
    font-size: $l-size;
    text-transform: uppercase;
    color: $off-white;
-
    height: auto;
 }
 
@@ -25,12 +24,13 @@
 
 // Link button
 .navigation__nav-link {
-   background-color: $off-white;
+   transition: 0.5s ease-in-out;
+   text-decoration: none;
    width: 16rem;
    height: $l-size;
    margin-left: $m-size;
    font-size: $m-size;
-   font-weight: 500;
+   font-weight: 700;
    text-align: center;
    text-transform: uppercase;
    color: $off-black;
@@ -38,4 +38,60 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   background: none;
+   border: 1px solid $off-white;
+
+   color: $off-white;
+}
+.navigation__nav-link:hover {
+   background: $off-white;
+   color: $off-black;
+}
+.navigation__hamburger {
+   display: none;
+
+   border: none;
+   // border-radius: 50%;
+   // border: 1px solid $off-white;
+   color: $off-white;
+   background: none;
+   font-size: $l-size;
+}
+.navigation__icon {
+   //color: red;
+}
+.navigation__menu_mask {
+   background: #0000007c;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 50;
+}
+.navigation__menu {
+   //fixed bg-white top-0 left-0 w-4/5 h-full z-50 shadow p-3
+   background: white;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 60%;
+   height: 100%;
+   z-index: 50;
+   padding: $m-size;
+}
+
+@media only screen and (max-width: 1200px) {
+   .navigation {
+      padding: $m-size;
+   }
+   .navigation__title {
+      font-size: $m-size;
+   }
+   .navigation__nav-link {
+      display: none;
+   }
+   .navigation__hamburger {
+      display: block;
+   }
 }

@@ -9,3 +9,12 @@
    font-size: $xl-size;
    margin-bottom: $l-size;
 }
+
+@media only screen and (max-width: 750px) {
+   .home-page__information {
+      font-size: $m-size;
+   }
+   .home-page__heading {
+      font-size: $m-size;
+   }
+}

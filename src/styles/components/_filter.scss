@@ -1,0 +1,31 @@
+.filter-select {
+   transition: 0.5s ease-in-out;
+
+   display: block;
+   font-size: $m-size;
+   font-weight: 700;
+   padding: 0.6em 1.4em 0.5em 0.8em;
+   width: 100%;
+   max-width: 100%;
+   margin: 0;
+   border: 1px solid $off-white;
+   border-radius: 0.5em;
+   //background: $off-white;
+   background: none;
+   width: 200px;
+   color: $off-white;
+}
+.filter-select:hover {
+   border-color: $off-black;
+   color: $off-black;
+   background: $off-white;
+}
+.filter-select:focus {
+   background: none;
+   border-color: $off-white;
+   color: $off-white;
+   outline: none;
+}
+.filter-select option {
+   font-weight: normal;
+}

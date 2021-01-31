@@ -21,10 +21,14 @@ function LaunchesPage(props) {
 
    window.addEventListener('scroll', checkScrollTop);
 
+   console.log('filters baby', props.filters.category);
+
    return (
       <div className="container--scrollable">
-         <h1>Happenings</h1>
-         <Filter />
+         <div className="happenings-page_header">
+            <h1 className="happenings-page_header-title">{props.filters.category === 'all' ? 'happenings' : props.filters.category}</h1>
+            <Filter />
+         </div>
          {props.happenings &&
             props.happenings.map((happening) => {
                return <HappeningCard key={happening.id} happening={happening} />;
@@ -37,6 +41,7 @@ function LaunchesPage(props) {
 const mapStateToProps = (state) => {
    return {
       happenings: state.happenings ? getVisibleHappenings(state.happenings, state.filters) : null,
+      filters: state.filters,
    };
 };
 

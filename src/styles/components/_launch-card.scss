@@ -1,27 +1,68 @@
 .launch-card {
    background: $off-something;
    margin: $l-size 0;
-   width: 1000px;
    height: 300px;
    display: flex;
-   //    border: 5px solid black;
    border-radius: 30px;
    overflow: hidden;
+   flex-direction: row;
+}
+
+.launch-card__header {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.launch-card__status {
+   border: 1px solid $off-white;
+   border-radius: 30px;
+   padding: $s-size $m-size;
+   color: $off-white;
 }
 
 .launch-card__image-container {
-   height: 300px;
-   width: 240px;
+   width: 50%;
    display: flex;
-   overflow: hidden;
 }
 
 .launch-card__image {
-   width: 240px;
+   width: 100%;
+   //height: 300px;
    object-fit: cover;
 }
 
 .launch-card__info {
    padding: $m-size;
    width: 100%;
+}
+
+.launch-card__text {
+   color: $off-white;
+   margin: $s-size;
+   span {
+      color: $off-black;
+      font-weight: 700;
+      text-transform: uppercase;
+   }
+}
+
+@media only screen and (max-width: 750px) {
+   .launch-card {
+      margin: $l-size 0;
+      flex-direction: column;
+      height: auto;
+   }
+   .launch-card__image-container {
+      width: 100%;
+   }
+   .launch-card__image {
+      height: 50rem;
+   }
+}
+@media only screen and (max-width: 400px) {
+   .launch-card__image {
+      height: 30rem;
+   }
 }

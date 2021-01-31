@@ -1,8 +1,25 @@
+.happenings-page_header {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+}
+.happenings-page_header-title {
+   text-transform: uppercase;
+   color: $off-white;
+   font-size: $l-size;
+   margin: 0;
+}
+
 .happenings-page__scroll-button {
    position: fixed;
    bottom: 0;
    right: 0;
    opacity: 0;
+   background: $off-white;
+   border-radius: 50%;
+   border: 1px solid $off-white;
    margin: $m-size;
    width: $l-size;
    height: $l-size;
@@ -11,4 +28,20 @@
 
 .happenings-page__scroll-button.active {
    opacity: 1;
+}
+.happenings-page__scroll-button:hover {
+   background: none;
+}
+.happenings-page__scroll-button:focus {
+   outline: none;
+}
+
+@media only screen and (max-width: 1200px) {
+   .happenings-page_header {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+   .happenings-page_header-title {
+      margin-bottom: $s-size;
+   }
 }

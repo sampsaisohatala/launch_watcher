@@ -9,9 +9,10 @@ function Filter(props) {
    };
 
    return (
-      <div className="select">
+      <div>
          {/* Category */}
          <select
+            className="filter-select"
             value={props.filters.category}
             onChange={(e) => {
                if (e.target.value === 'all') {
