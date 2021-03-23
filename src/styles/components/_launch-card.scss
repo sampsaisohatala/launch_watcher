@@ -37,15 +37,15 @@
    padding: $m-size;
    width: 100%;
 }
-
+.launch-card__text-container {
+   display: flex;
+   margin: $s-size;
+}
+.launch-card__icon {
+   margin-right: $s-size;
+}
 .launch-card__text {
    color: $off-white;
-   margin: $s-size;
-   span {
-      color: $off-black;
-      font-weight: 700;
-      text-transform: uppercase;
-   }
 }
 
 @media only screen and (max-width: 750px) {
@@ -62,6 +62,9 @@
    }
 }
 @media only screen and (max-width: 400px) {
+   .launch-card__header {
+      font-size: $sm-size;
+   }
    .launch-card__image {
       height: 30rem;
    }

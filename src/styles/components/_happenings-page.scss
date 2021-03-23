@@ -24,6 +24,9 @@
    width: $l-size;
    height: $l-size;
    transition: 0.5s ease-in-out;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .happenings-page__scroll-button.active {

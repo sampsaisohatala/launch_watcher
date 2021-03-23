@@ -21,6 +21,7 @@ const formatLaunchData = (launches) => {
       net: launch.net,
       description: launch.mission && launch.mission.description,
       location: launch.pad.location.name,
+      webcast_live: launch.webcast_live ? launch.webcast_live : false,
    }));
 };
 
@@ -34,6 +35,7 @@ const formatEventData = (events) => {
       location: event.location,
       video_url: event.video_url,
       description: event.description,
+      webcast_live: event.webcast_live ? event.webcast_live : false,
    }));
 };
 

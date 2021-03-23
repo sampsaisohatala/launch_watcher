@@ -48,10 +48,10 @@ function Navigation(props) {
                ({ item, key, props }) =>
                   item && (
                      <animated.div key={key} style={props} className="navigation__menu">
-                        <Link className="" to="/" onClick={() => setShowMenu(!showMenu)}>
+                        <Link className="navigation__nav-link--menu" to="/" onClick={() => setShowMenu(!showMenu)}>
                            Home
                         </Link>
-                        <Link className="" to="/happenings" onClick={() => setShowMenu(!showMenu)}>
+                        <Link className="navigation__nav-link--menu" to="/happenings" onClick={() => setShowMenu(!showMenu)}>
                            Happenings
                         </Link>
                      </animated.div>

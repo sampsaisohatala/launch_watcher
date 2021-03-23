@@ -1,6 +1,8 @@
 import React from 'react';
 import LaunchTimer from './LaunchTimer';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faBuilding, faMapMarked, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const HappeningCard = ({ happening }) => {
    return (
@@ -16,30 +18,29 @@ const HappeningCard = ({ happening }) => {
             </div>
 
             <LaunchTimer launchTime={happening.net} individual />
-
+            {happening.net && (
+               <div className={'launch-card__text-container'}>
+                  <FontAwesomeIcon icon={faClock} className={'launch-card__icon'} />
+                  <p className="launch-card__text">{moment.utc(happening.net).format('MMMM Do YYYY / HH:mm UTC')}</p>
+               </div>
+            )}
             {happening.provider && (
-               <p className="launch-card__text">
-                  <span>Provider: </span>
-                  {happening.provider}
-               </p>
+               <div className={'launch-card__text-container'}>
+                  <FontAwesomeIcon icon={faBuilding} className={'launch-card__icon'} />
+                  <p className="launch-card__text">{happening.provider}</p>
+               </div>
             )}
             {happening.location && (
-               <p className="launch-card__text">
-                  <span>Location: </span>
-                  {happening.location}
-               </p>
+               <div className={'launch-card__text-container'}>
+                  <FontAwesomeIcon icon={faMapMarked} className={'launch-card__icon'} />
+                  <p className="launch-card__text">{happening.location}</p>
+               </div>
             )}
             {happening.description && (
-               <p className="launch-card__text">
-                  <span>Description: </span>
-                  {happening.description}
-               </p>
-            )}
-            {happening.net && (
-               <p className="launch-card__text">
-                  <span>Date/time: </span>
-                  {moment.utc(happening.net).format('MMMM Do YYYY / HH:mm UTC')}
-               </p>
+               <div className={'launch-card__text-container'}>
+                  <FontAwesomeIcon icon={faInfoCircle} className={'launch-card__icon'} />
+                  <p className="launch-card__text">{happening.description}</p>
+               </div>
             )}
          </div>
       </div>
