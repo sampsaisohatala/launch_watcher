@@ -31,10 +31,7 @@ function LaunchesPage(props) {
             <h1 className="happenings-page_header-title">{props.filters.category === 'all' ? 'happenings' : props.filters.category}</h1>
             <Filter />
          </div>
-         {props.happenings &&
-            props.happenings.map((happening) => {
-               return <HappeningCard key={happening.id} happening={happening} />;
-            })}
+         {props.happenings && props.happenings.map((happening) => <HappeningCard key={happening.id} happening={happening} />)}
          <button className={showScroll ? 'happenings-page__scroll-button active' : 'happenings-page__scroll-button'} onClick={scrollTop}>
             {' '}
             <FontAwesomeIcon icon={faAngleUp} />

@@ -13,12 +13,14 @@
    flex-direction: row;
    align-items: center;
    justify-content: space-between;
+   color: $off-white;
+   padding-bottom: $m-size;
 }
 
 .launch-card__status {
    border: 1px solid $off-white;
    border-radius: 30px;
-   padding: $s-size $m-size;
+   padding: $xs-size $m-size;
    color: $off-white;
 }
 
@@ -34,18 +36,36 @@
 }
 
 .launch-card__info {
-   padding: $m-size;
+   padding: $l-size;
    width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: inherit;
+   justify-content: space-between;
 }
 .launch-card__text-container {
    display: flex;
    margin: $s-size;
+   color: $off-white;
 }
 .launch-card__icon {
    margin-right: $s-size;
 }
-.launch-card__text {
-   color: $off-white;
+// .launch-card__text {
+//    color: $off-white;
+// }
+.launch-card__button {
+   background: $off-white !important;
+   color: $off-black !important;
+   box-shadow: none !important;
+}
+.launch-card__dialog {
+   background: $off-black !important;
+   color: $off-white !important;
+}
+
+.launch-card__subcontainer {
+   padding: 0;
 }
 
 @media only screen and (max-width: 750px) {
@@ -60,6 +80,12 @@
    .launch-card__image {
       height: 50rem;
    }
+   .launch-card__info {
+      padding: $l-size $m-size;
+   }
+   .launch-card__subcontainer {
+      padding: $m-size 0;
+   }
 }
 @media only screen and (max-width: 400px) {
    .launch-card__header {
@@ -67,5 +93,8 @@
    }
    .launch-card__image {
       height: 30rem;
+   }
+   .launch-card__status {
+      padding: $xs-size $s-size;
    }
 }

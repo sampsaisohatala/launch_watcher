@@ -9,28 +9,25 @@ function Filter(props) {
    };
 
    return (
-      <div>
-         {/* Category */}
-         <select
-            className="filter-select"
-            value={props.filters.category}
-            onChange={(e) => {
-               if (e.target.value === 'all') {
-                  props.dispatch(setCategoryAll());
-               } else if (e.target.value === 'launches') {
-                  props.dispatch(setCategoryLaunches());
-               } else if (e.target.value === 'events') {
-                  props.dispatch(setCategoryEvents());
-               }
+      <select
+         className="filter-select"
+         value={props.filters.category}
+         onChange={(e) => {
+            if (e.target.value === 'all') {
+               props.dispatch(setCategoryAll());
+            } else if (e.target.value === 'launches') {
+               props.dispatch(setCategoryLaunches());
+            } else if (e.target.value === 'events') {
+               props.dispatch(setCategoryEvents());
+            }
 
-               // console.log('category filter: ', e.target.value);
-            }}
-         >
-            <option value="all">All</option>
-            <option value="launches">Launches</option>
-            <option value="events">Events</option>
-         </select>
-      </div>
+            // console.log('category filter: ', e.target.value);
+         }}
+      >
+         <option value="all">All</option>
+         <option value="launches">Launches</option>
+         <option value="events">Events</option>
+      </select>
    );
 }
 
