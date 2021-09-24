@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useMemo } from 'react';
 import LaunchTimer from './LaunchTimer';
 import { getNextHappening } from '../selectors/happenings';
+import CurvedBackground from './CurvedBackground';
 
 function HomePage(props) {
    const nextHappening = useMemo(() => props.nextHappening, [props.nextHappening]);
@@ -17,6 +18,8 @@ function HomePage(props) {
 
          {/* Next launch timer */}
          {nextHappening && <LaunchTimer launchTime={nextHappening.net} />}
+
+         <CurvedBackground/>
       </div>
    );
 }

@@ -4,9 +4,11 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faBuilding, faMapMarked, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { Button, Dialog, DialogTitle, DialogContent, Typography } from '@material-ui/core';
+import useImagePlaceholder from '../hooks/useImagePlaceholder';
 
 const HappeningCard = ({ happening }) => {
    const [showDialog, setShowDialog] = React.useState(false);
+   const [logoSrc, { logoBlur }] = useImagePlaceholder( happening.image );
 
    const handleDialogVisibility = () => {
       setShowDialog(!showDialog);
@@ -17,7 +19,16 @@ const HappeningCard = ({ happening }) => {
       <>
          <div className="launch-card">
             <div className="launch-card__image-container">
-               <img className="launch-card__image" src={happening.image} alt="loading..."></img>
+            <img
+                  className="launch-card__image"
+                  src={logoSrc}
+                  alt=""
+                  style={{
+                    filter: logoBlur ? 'blur(20px)' : 'none',
+                    transition: logoBlur ? 'none' : 'filter 0.3s ease-out',
+                  }}
+                />
+               {/* <img className="launch-card__image" src={happening.image} alt="loading..."></img> */}
             </div>
 
             <div className="launch-card__info">
