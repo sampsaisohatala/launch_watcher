@@ -10,16 +10,18 @@ function HomePage(props) {
 
    return (
       <div className="container--absolute">
-         {/* Next launch information */}
-         {nextHappening && <h1 className="home-page__information">{`${nextHappening.name}`}</h1>}
+         <div className="home_page__container">
+            {/* Next launch information */}
+            {nextHappening && <h1 className="home-page__information">{`${nextHappening.name}`}</h1>}
 
-         {/* Next launch heading */}
-         <h2 className="home-page__heading">{nextHappening ? 'Launch starting in' : 'No data available'}</h2>
+            {/* Next launch heading */}
+            <h2 className="home-page__heading">{nextHappening ? 'Launch starting in' : 'No data available'}</h2>
 
-         {/* Next launch timer */}
-         {nextHappening && <LaunchTimer launchTime={nextHappening.net} />}
-
+            {/* Next launch timer */}
+            {nextHappening && <LaunchTimer launchTime={nextHappening.net} />}
+         </div>
          <CurvedBackground/>
+         <div className="bottom-fill"/>
       </div>
    );
 }

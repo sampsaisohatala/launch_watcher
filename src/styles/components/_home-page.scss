@@ -1,4 +1,12 @@
 // voisko muuttaa launch-data:ksi tai vaan launch
+.home_page__container {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   z-index: 2;
+}
 
 .home-page__information {
    color: $off-white;

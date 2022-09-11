@@ -1,4 +1,20 @@
-.custom-shape-divider-bottom-1631126055 {
+.curvedBackground {
+    position: absolute;
+    bottom: $svg-height-adjustment;
+    width: 100vw;
+}
+.bottom-fill {
+    height: $svg-height-adjustment;
+    background-color: $svg-back;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    // z-index: 2;
+}
+.filter-green{
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+.svg-back {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -9,13 +25,38 @@
     z-index: 1000;
 }
 
-.custom-shape-divider-bottom-1631126055 svg {
+.svg-back svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
     height: 80px;
 }
 
-.custom-shape-divider-bottom-1631126055 .shape-fill {
-    fill: #000000;
+.svg-back .shape-fill {
+    fill: $svg-back;
+}
+
+// SVG FRONT
+.svg-front {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    z-index: 1000;
+
+}
+
+.svg-front svg {
+    position: relative;
+    display: block;
+    width: calc(187% + 1.3px);
+    height: 50px;
+    transform: rotateY(180deg);
+}
+
+.svg-front .shape-fill {
+    fill: $svg-front;
 }
